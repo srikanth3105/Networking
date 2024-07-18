@@ -16,8 +16,5 @@ Configure a basic DHCP network in Packet Tracer. The router will act as the DHCP
  5) DNS Server = Router1
  6) Make sure PCs can ping each other and the loopback of Router1
  
-## Before Engaging
-- MLS is configured with VLANS, Vlan 10 -Gig 1/0/2 , Vlan 20 Gig 1/0/3
-- SVI are configured on the switch
-- Routing is not enabled on Switch
-- 
+## Check out Lab Overview
+
