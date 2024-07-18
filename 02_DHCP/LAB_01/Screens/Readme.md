@@ -5,13 +5,13 @@ Configure a basic DHCP network in Packet Tracer. The router will act as the DHCP
 
 ## Topology
 - Router: ESR 4321
--** Switch: Multilayer switch (configured as a basic Layer 2 switch)
--** PC: PC0
+- Switch: Multilayer switch (configured as a basic Layer 2 switch)
+- PC: PC0
 
 ## Configure DHCP on Router1 as follows
--** Excluded address range 10.1.1.1 to 10.1.1.100
-** Pool name = pc
-** Network 10.1.1.0/24
-** Default Gateway = Router 1
-** DNS Server = Router 1
-** Test that PC can ping loopback of Router 1
+- Excluded address range 10.1.1.1 to 10.1.1.100
+- Pool name = pc
+- Network 10.1.1.0/24
+- Default Gateway = Router 1
+- DNS Server = Router 1
+- Test that PC can ping loopback of Router 1
