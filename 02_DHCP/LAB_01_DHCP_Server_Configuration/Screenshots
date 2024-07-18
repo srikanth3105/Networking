@@ -1,0 +1,17 @@
+# Networking Cisco Packet Tracer Labs
+
+## Initial Router Configuration
+
+This document provides the initial configuration steps for a Cisco router (R1) as part of my networking labs. The configuration includes setting up IP addresses and verifying the interface statuses.
+
+### Router Configuration Commands
+
+1. **Enter Enable Mode**:
+   ```sh
+   R1>en
+   R1#sh ip int brief
+   Interface              IP-Address      OK? Method Status                Protocol
+   GigabitEthernet0/0/0   10.1.1.254      YES manual up                    up
+   GigabitEthernet0/0/1   unassigned      YES unset  administratively down down
+   Loopback0              1.1.1.1         YES manual up                    up
+   Vlan1                  unassigned      YES unset  administratively down down
