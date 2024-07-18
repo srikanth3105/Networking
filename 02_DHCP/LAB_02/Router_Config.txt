@@ -1,0 +1,141 @@
+## Router configuration
+
+R1>en
+R1#sh ip interface br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0/0   10.1.1.254      YES manual up                    up 
+GigabitEthernet0/0/1   unassigned      YES unset  administratively down down 
+Loopback0              1.1.1.1         YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+- step 1 to exclude first 10 ip addresses of Vlan 10 and Vlan 20
+- ip dhcp excluded-address: Specifies a range of IP addresses that the DHCP server should not assign to clients.
+R1(config)#ip dhcp excluded-address 10.1.10.1 10.1.10.10
+R1(config)#ip dhcp Excluded-address 10.1.20.1 10.1.20.10
+R1(config)#end
+R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+R1#
+R1#sh run | i dhcp  -sh run | i dhcp (show running-config | include dhcp): Displays the running configuration filtered to show only DHCP-related commands.
+ip dhcp excluded-address 10.1.10.1 10.1.10.10
+ip dhcp excluded-address 10.1.20.1 10.1.20.10
+R1#
+R1#Conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+- ip dhcp pool Vlan10: Creates a DHCP pool named Vlan10
+R1(config)#ip dhcp pool Vlan10
+R1(dhcp-config)#?
+  default-router  Default routers
+  dns-server      Set name server
+  domain-name     Domain name
+  exit            Exit from DHCP pool configuration mode
+  network         Network number and mask
+  no              Negate a command or set its defaults
+  option          Raw DHCP options
+R1(dhcp-config)#network 10.1.10.0 255.255.255.0 -network 10.1.10.0 255.255.255.0: Defines the network and subnet mask for the DHCP pool
+R1(dhcp-config)#default-router 10.1.10.1 -default-router 10.1.10.1: Specifies the default gateway for DHCP clients in VLAN 10
+R1(dhcp-config)#dns-server 10.1.1.254
+R1(dhcp-config)#end
+R1#
+R1#
+R1#conft
+Translating "conft"...domain server (255.255.255.255)
+% Unknown command or computer name, or unable to find computer address
+
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#ip dhcp pool vlan20
+R1(dhcp-config)#network 10.1.20.0 255.255.255.0
+R1(dhcp-config)#default-route 10.1.20.1
+R1(dhcp-config)#dns-server 10.1.1.254
+R1(dhcp-config)#end
+R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+R1#sh run
+!
+ip dhcp pool Vlan10
+ network 10.1.10.0 255.255.255.0
+ default-router 10.1.10.1
+ dns-server 10.1.1.254
+ip dhcp pool vlan20
+ network 10.1.20.0 255.255.255.0
+ default-router 10.1.20.1
+ dns-server 10.1.1.254
+ !
+ 
+-A router will not allocate IP addresses if it receives a Dhcp request from a subnet that it doesn't
+
+recognize, it will not allocate IP addresses to those subnets because it doesn't know how to route
+
+to those subnets.So what we need to do is configure either a routing protocol 
+R1#
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#ip route?
+route  
+R1(config)#ip route 10.1.10.0 255.255.255.0 10.1.1.1
+R1(config)#ip route 10.1.20.0 255.255.255.0 10.1.1.1
+R1#
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#ip route?
+route  
+R1(config)#ip route 10.1.10.0 255.255.255.0 10.1.1.1
+R1(config)#ip route 10.1.20.0 255.255.255.0 10.1.1.1
+R1(config)#end
+R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+R1#sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     1.0.0.0/32 is subnetted, 1 subnets
+C       1.1.1.1/32 is directly connected, Loopback0
+     10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+C       10.1.1.0/24 is directly connected, GigabitEthernet0/0/0
+L       10.1.1.254/32 is directly connected, GigabitEthernet0/0/0
+S       10.1.10.0/24 [1/0] via 10.1.1.1
+S       10.1.20.0/24 [1/0] via 10.1.1.1
+
+R1#ping 10.1.1.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.1.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+
+R1#
+R1#ping 10.1.10.0
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.1.10.0, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+
+R1#ping 10.1.20.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.1.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+
+R1#
+R1#ping 10.1.10.0
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.1.10.0, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+
+R1#
