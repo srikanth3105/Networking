@@ -4,7 +4,7 @@ Configure a basic DHCP network in Packet Tracer. The router will act as the DHCP
 
 ## Topology
 - Router: ESR 4321
-- Switch: Multilayer switch (configured as a basic Layer 2 switch)
+- Switch: Multilayer switch (configured as a basic Layer 3 switch)
 - PC: PC0
 - PC: PC1
 
