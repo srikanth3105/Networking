@@ -20,22 +20,22 @@ Create a topology with three routers and three PCs connected as follows:
 1. **Add Devices**:
    - Drag and drop three routers (`Router0`, `Router1`, `Router2`) and three PCs onto the workspace.
    - Connect the routers with serial links or Ethernet cables.
-   - Connect each PC to its respective router with an Ethernet cable.
+   - Connect Switches, PC's 
 
 2. **Assign IP Addresses**:
 
     - **Router1**:
       - `GigabitEthernet0/0`: 192.168.1.1/24 (connected to PC1)
-      - `Serial0/0/0`: 10.0.0.1/30 (connected to Router2)
+      - `Serial0/1/0`: 10.0.0.1/30 (connected to Router2)
     
     - **Router2**:
-      - `Serial0/0/0`: 10.0.0.2/30 (connected to Router1)
-      - `Serial0/0/1`: 10.0.0.5/30 (connected to Router3)
-      - `GigabitEthernet0/0`: 192.168.2.1/24 (connected to PC2)
+      - `Serial0/1/0`: 10.0.0.2/30 (connected to Router1)
+      - `Serial0/1/1`: 10.0.0.5/30 (connected to Router3)
+      - `GigabitEthernet0/0`: 192.168.2.1/24 
     
     - **Router3**:
-      - `Serial0/0/1`: 10.0.0.6/30 (connected to Router2)
-      - `GigabitEthernet0/0`: 192.168.3.1/24 (connected to PC3)
+      - `Serial0/1/0`: 10.0.0.6/30 (connected to Router2)
+      - `GigabitEthernet0/0`: 192.168.3.1/24 
 
     - **PCs**:
       - PC1: 192.168.1.2/24, Default Gateway: 192.168.1.1
