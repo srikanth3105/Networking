@@ -47,10 +47,10 @@ Create a topology with three routers and three PCs connected as follows:
      
 3. **Verify Connections on**:
    - **Router1**:**Router2**:**Router3**
-   - Sh ip int br
-   - sh ip eigrp neighbors
-   - sh ip eigrp topology
-   - sh ip route eigrp
-   - sh ip dhcp binding
-   - on pc's, test pinging other devices
+      - Sh ip int br
+      - sh ip eigrp neighbors
+      - sh ip eigrp topology
+      - sh ip route eigrp
+      - sh ip dhcp binding
+      - on pc's, test pinging other devices
    
