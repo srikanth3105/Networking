@@ -9,9 +9,9 @@
 ## Lab Topology
 Create a topology with three routers and three PCs connected as follows:
 
-- **Router1**: Interfaces connected to PC1 and Router2.
-- **Router2**: Interfaces connected to Router1, Router3, and PC2.
-- **Router3**: Interfaces connected to Router2 and PC3.
+- **Router1**: Interfaces connected to SW >PC1 and Router2.
+- **Router2**: Interfaces connected to Router1, Router3, and SW >PC2.
+- **Router3**: Interfaces connected to Router2 and SW >PC3.
 
 ## Step-by-Step Configuration
 
@@ -30,14 +30,26 @@ Create a topology with three routers and three PCs connected as follows:
     
     - **Router2**:
       - `Serial0/1/0`: 10.0.0.2/30 (connected to Router1)
-      - `Serial0/1/1`: 10.0.0.5/30 (connected to Router3)
+      - `Serial0/1/1`: 11.0.0.1/30 (connected to Router3)
       - `GigabitEthernet0/0`: 192.168.2.1/24 
     
     - **Router3**:
-      - `Serial0/1/0`: 10.0.0.6/30 (connected to Router2)
+      - `Serial0/1/0`: 11.0.0.2/30 (connected to Router2)
       - `GigabitEthernet0/0`: 192.168.3.1/24 
 
     - **PCs**:
-      - PC1: 192.168.1.2/24, Default Gateway: 192.168.1.1
-      - PC2: 192.168.2.2/24, Default Gateway: 192.168.2.1
-      - PC3: 192.168.3.2/24, Default Gateway: 192.168.3.1
+      - PC0: 192.168.1.11/24, Default Gateway: 192.168.1.1
+      - PC1: 192.168.1.12/24, Default Gateway: 192.168.1.1
+      - PC2: 192.168.2.11/24, Default Gateway: 192.168.2.1
+      - PC3: 192.168.2.12/24, Default Gateway: 192.168.2.1
+      - PC4: 192.168.3.11/24, Default Gateway: 192.168.3.1
+      - PC4: 192.168.3.12/24, Default Gateway: 192.168.3.1
+     
+3. **Verify Connections**:
+   - **Router1**:
+   - Sh ip int br
+   - sh ip eigrp neighbors
+   - sh ip eigrp topology
+   - sh ip route eigrp
+   - sh ip dhcp binding
+   
