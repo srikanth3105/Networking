@@ -45,11 +45,12 @@ Create a topology with three routers and three PCs connected as follows:
       - PC4: 192.168.3.11/24, Default Gateway: 192.168.3.1
       - PC4: 192.168.3.12/24, Default Gateway: 192.168.3.1
      
-3. **Verify Connections**:
-   - **Router1**:
+3. **Verify Connections on**:
+   - **Router1**:**Router2**:**Router3**
    - Sh ip int br
    - sh ip eigrp neighbors
    - sh ip eigrp topology
    - sh ip route eigrp
    - sh ip dhcp binding
+   - on pc's, test pinging other devices
    
