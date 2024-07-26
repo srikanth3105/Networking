@@ -15,13 +15,13 @@ This lab involves configuring OSPF in a single area (Area 0) across three router
 - **Router 3 (R3)**: Connected to internal network `192.168.3.0/24` and Router 2.
 
 ### Network Addressing
-- **R1 g0/0/1**: 192.168.1.100/24
-- **R1 S0/0**: 10.0.0.1/30
-- **R2 g0/0/1**: 192.168.2.100/24
-- **R2 S0/0**: 10.0.0.2/30
-- **R2 S0/1**: 11.0.0.1/30
-- **R3 g0/0/1**: 192.168.3.100/24
-- **R3 S0/0**: 11.0.0.2/30
+- **R1 g0/0/0**: 192.168.1.100/24
+- **R1 S0/1/0**: 10.0.0.1/30
+- **R2 g0/0/0**: 192.168.2.100/24
+- **R2 S0/1/0**: 10.0.0.2/30
+- **R2 S0/1/1**: 11.0.0.1/30
+- **R3 g0/0/0**: 192.168.3.100/24
+- **R3 S0/1/0**: 11.0.0.2/30
 
 ## OSPF Configuration
 The OSPF routing protocol is configured on all routers, with all interfaces participating in Area 0. Each router advertises its connected networks into OSPF.
