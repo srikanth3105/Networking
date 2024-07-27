@@ -1,0 +1,50 @@
+R1_Config
+
+hostname R1
+interface g0/0/1
+ ip address 192.168.1.100 255.255.255.0
+ no shutdown
+interface S0/1/0
+ ip address 10.0.0.1 255.255.255.252
+ no shutdown
+
+# Configure OSPF
+router ospf 1
+ network 192.168.1.0 0.0.0.255 area 0
+ network 10.0.0.0 0.0.0.3 area 0
+ 
+ 
+R2_Configuration
+ 
+ hostname R2
+interface g0/0/0
+ ip address 192.168.2.100 255.255.255.0
+ no shutdown
+interface S0/1/0
+ ip address 10.0.0.2 255.255.255.252
+ no shutdown
+interface S0/1/1
+ ip address 11.0.0.1 255.255.255.252
+ no shutdown
+
+# Configure OSPF
+router ospf 1
+ network 192.168.2.0 0.0.0.255 area 0
+ network 10.0.0.0 0.0.0.3 area 0
+ network 11.0.0.0 0.0.0.3 area 0
+ 
+R3_Config
+
+hostname R3
+interface g0/0/0
+ ip address 192.168.3.100 255.255.255.0
+ no shutdown
+interface S0/1/0
+ ip address 11.0.0.2 255.255.255.252
+ no shutdown
+
+# Configure OSPF
+router ospf 1
+ network 192.168.3.0 0.0.0.255 area 0
+ network 11.0.0.0 0.0.0.3 area 0
+ 

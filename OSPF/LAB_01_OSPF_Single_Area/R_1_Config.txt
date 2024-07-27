@@ -1,0 +1,93 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int g0/0/0
+Router(config-if)#ip address 192.168.1.100 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+Router(config-if)#int s0/1/0
+Router(config-if)#ip address 10.0.0.1 255.255.255.0
+Router(config-if)#encapsulation ppp
+Router(config-if)#no shutdown
+Router(config-if)#end
+
+Router#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0/0   192.168.1.100   YES manual up                    up 
+GigabitEthernet0/0/1   unassigned      YES NVRAM  administratively down down 
+Serial0/1/0            10.0.0.1        YES manual up                    up 
+Serial0/1/1            unassigned      YES NVRAM  administratively down down 
+Vlan1                  unassigned      YES NVRAM  administratively down down
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router ospf 1
+Router(config-router)#network 192.168.1.0 0.0.0.255 area 0
+Router(config-router)#network 10.0.0.0 0.0.0.3 area 0
+Router(config-router)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#wr
+Building configuration...
+[OK]
+Router#sh ip ospf neighbor
+
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+192.168.2.100     0   FULL/  -        00:00:38    10.0.0.2        Serial0/1/0
+Router#
+Router#sh ip ospf database
+            OSPF Router with ID (192.168.1.100) (Process ID 1)
+
+                Router Link States (Area 0)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+192.168.3.100   192.168.3.100   1012        0x80000005 0x009925 3
+192.168.1.100   192.168.1.100   1007        0x80000007 0x00c9f8 3
+192.168.2.100   192.168.2.100   1007        0x8000000d 0x0053e2 5
+Router#
+Router#
+Router#sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
+C       10.0.0.0/24 is directly connected, Serial0/1/0
+L       10.0.0.1/32 is directly connected, Serial0/1/0
+C       10.0.0.2/32 is directly connected, Serial0/1/0
+     11.0.0.0/30 is subnetted, 1 subnets
+O       11.0.0.0/30 [110/128] via 10.0.0.2, 20:59:32, Serial0/1/0
+     192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+C       192.168.1.0/24 is directly connected, GigabitEthernet0/0/0
+L       192.168.1.100/32 is directly connected, GigabitEthernet0/0/0
+O    192.168.2.0/24 [110/65] via 10.0.0.2, 21:04:00, Serial0/1/0
+O    192.168.3.0/24 [110/129] via 10.0.0.2, 20:58:07, Serial0/1/0
+
+Router#
+Router#Sh ip protocols
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set 
+  Incoming update filter list for all interfaces is not set 
+  Router ID 192.168.1.100
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    192.168.1.0 0.0.0.255 area 0
+    10.0.0.0 0.0.0.3 area 0
+  Routing Information Sources:  
+    Gateway         Distance      Last Update 
+    192.168.1.100        110      00:17:01
+    192.168.2.100        110      00:17:01
+    192.168.3.100        110      00:17:06
+  Distance: (default is 110)
+
+Router#
