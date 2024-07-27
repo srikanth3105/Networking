@@ -7,9 +7,9 @@
   - Deny the network
   - Permit all remaining traffic
   - The above all rules should not affect the other communication
-###Syntax for standard access-list
+### Syntax for standard access-list
 - Router(config)#access-list <ACLnumber> <permit/deny>  <source address> <source wild card mask>
-### to write ACL statement
+### To write ACL statement
 - on which router to implement ACl
 - Identify Source and Destination
 - in/out
