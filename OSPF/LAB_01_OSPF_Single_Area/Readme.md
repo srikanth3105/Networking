@@ -23,6 +23,13 @@ This lab involves configuring OSPF in a single area (Area 0) across three router
 - **R3 g0/0/0**: 192.168.3.100/24
 - **R3 S0/1/0**: 11.0.0.2/30
 
+  ### Test
+  - #Sh ip ospf neigbor
+  - #Sh ip ospf database
+  - #Sh ip route
+  - #sh ip protocols
+  - Ping test on each device
+
 ## OSPF Configuration
 The OSPF routing protocol is configured on all routers, with all interfaces participating in Area 0. Each router advertises its connected networks into OSPF.
 
