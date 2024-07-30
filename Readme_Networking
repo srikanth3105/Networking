@@ -2,17 +2,20 @@
 
 ## Introduction
 
-Welcome to my Networking Labs repository! This repository is dedicated to documenting my journey and progress as I work through various networking labs using Cisco Packet Tracer. The primary goal is to enhance my understanding of networking concepts, gain practical experience with Cisco devices, and prepare for Cisco certifications.
+Welcome to my Networking Labs repository! This repository documents my journey and progress through various networking labs using Cisco Packet Tracer. The primary goal is to enhance my understanding of networking concepts, gain practical experience with Cisco devices, and prepare for Cisco certifications.
 
 ## Repository Structure
 
-The repository is organized into directories two directorie
- - BaSic_Networking_Labs
- - Network Design Projects
+The repository is organized into two main directories:
+
+- **Basic_Networking_Labs**: Contains foundational networking labs covering basic concepts and configurations.
+- **Network_Design_Projects**: Includes projects focused on network design and implementation for different scenarios.
+
+Each directory contains the following:
 
 - **README.md**: An overview of the lab, including objectives, steps, and results.
 - **Packet Tracer Files (.pkt)**: The actual lab configurations and network setups created in Cisco Packet Tracer.
-- **Screenshots**: Visual documentation of the network topologies, configurations, and verification steps.
+- **Screenshots**: Visual documentation of network topologies, configurations, and verification steps.
 
 ## Objectives
 
@@ -23,32 +26,13 @@ Through these labs, I aim to:
 - Prepare for Cisco certification exams such as CCNA and CCNP.
 - Document my learning process and share it with others who might find it useful.
 
-## Labs Included
-
-### Lab 1: Basic Routing
-- **Objectives**: Configure basic routing on Cisco routers and verify connectivity.
-- **Topics Covered**: Static routing, routing tables, and basic network troubleshooting.
-- **Status**: Completed
-
-### Lab 2: VLAN Configuration
-- **Objectives**: Set up VLANs on Cisco switches to segment network traffic.
-- **Topics Covered**: VLAN creation, VLAN assignment, and inter-VLAN routing.
-- **Status**: In Progress
-
-### Lab 3: EIGRP Implementation
-- **Objectives**: Implement and configure EIGRP on Cisco routers.
-- **Topics Covered**: EIGRP basics, DUAL algorithm, and route summarization.
-- **Status**: Planned
-
-### Future Labs
-- More labs will be added as I progress through my studies, covering advanced topics such as OSPF, BGP, network security, and more.
 
 ## How to Use This Repository
 
 1. **Clone the Repository**:
    - Clone the repository to your local machine using the following command:
      ```sh
-     git clone https://github.com/srikanth3105/Networking.git
+     git clone https://github.com/yourusername/Networking.git
      ```
 
 2. **Explore the Labs**:
@@ -62,6 +46,6 @@ Through these labs, I aim to:
 
 ## Contact
 
-If you have any questions, suggestions, or feedback, feel free to reach out to me via GitHub or email at srikanth.jangam@outlook.com
+If you have any questions, suggestions, or feedback, feel free to reach out to me via GitHub or email at srikanth.jangam@outlook.com.
 
 Thank you for visiting my repository! I hope you find the labs and documentation helpful in your own networking journey.
