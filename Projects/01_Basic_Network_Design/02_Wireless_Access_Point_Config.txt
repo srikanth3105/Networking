@@ -1,6 +1,0 @@
-Wireless Access Point Configurations
-
-TAP ON each access pint> CONFIG > PORT 1
-Change SSID default to Department Name
-For IT IT-WIFI, FINANCE - FINACE-WIFI, CUSTOMER SERVICE - CS-WIFI
-Configure WPA2-PSK passwords, IT - ITWIFI@1234, FINANCE - FINANCEWIFI@1234, CUSTOMER SERVICE - CSWIFI@1234
