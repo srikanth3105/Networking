@@ -20,11 +20,11 @@ Design and implement a standalone network for a branch office with one router an
 ##### Switch Config
   - Create VLANS
       - VLAN 10, IT
-    VLAN 20 , FINANCE
-    VLAN 30 , CUSTOMER_SERVICE
-    Assign ports to Vlans
-    Create a trunk port for the interface connecting siwtch and router
-    Write Configuration
+      - VLAN 20 , FINANCE
+      - VLAN 30 , CUSTOMER_SERVICE
+  - Assign ports to Vlans
+  - Create a trunk port for the interface connecting siwtch and router
+  - Write Configuration
 
 ##### Router Config
    - Create Sub interfaces to int g0/0 with vlan for instance int g0/0.10
