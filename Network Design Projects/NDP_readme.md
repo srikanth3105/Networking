@@ -9,5 +9,6 @@ Welcome to the Network Design Projects directory. Here, you'll find a comprehens
 
 ## Projects
 
-### Branch Network Design
-  - 
+### 01 Branch Network Design
+  - Design and implement a standalone network for a branch office with one router and one switch. The network will support three departments, each on a separate VLAN, with wireless network access and automatic IP address assignment
+ 
