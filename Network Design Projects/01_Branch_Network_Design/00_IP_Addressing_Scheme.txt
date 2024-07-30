@@ -1,0 +1,28 @@
+Ip Subnetting
+•	Base network 192.168.1.0
+•	Number of subnets = 2n (number of network bits)
+•	Required subnets = 3
+•	2n >= 3 :: 22 >= 3
+•	Number of subnets = 2n (number of network bits) = 22 =4
+•	Class C subnet mask = 255.255.255.0 = 11111111. 11111111. 11111111.00000000
+•	Converting 2 network bits = 11111111. 11111111. 11111111.11000000
+•	New Subnet mask = 255.255.255.192 (or)24+2 (additional network bits) 26
+•	Number of host bits = 6, no of hosts = 2h – 2= 26 -2 = 64 -2 =62 hosts
+•	Block size 2h = 26=64
+•	1st subnet
+o	N ID: 192.168.1.0
+o	B ID: 192.168.1.63
+o	Host Range: 192.168.1.1 to 192.168.1.62
+•	2nd subnet
+o	N ID: 192.168.1.64
+o	B ID: 192.168.1.127
+o	Host Range: 192.168.1.65 to 192.168.1.126
+
+•	3rd subnet
+o	N ID: 192.168.1.128
+o	B ID: 192.168.1.191
+o	Host Range: 192.168.1.129 to 192.168.1.190
+•	4th Subnet (Extra)
+o	N id : 192.168.1.192
+o	B id : 192.168.1.255
+o	H range: 192.168.1.193 to 192.168.1.254
