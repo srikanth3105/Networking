@@ -11,44 +11,75 @@ Design and implement a standalone network for a branch office with one router an
 - Devices: At least two PCs, one laptop per department, and a Printer.
 - Connectivity Testing: Verify connectivity between all devices using ping tests to ensure that all devices can communicate with each other.
 
-### Lets get Started as per requirements
-- in cisco packet tracer add all the devices establish connections with cables and color code departments in different VLANS, and Label the name of department, VLAN, Ip address with subnet mask.
-- Refer to network topology screenshot
-  
-#### Configurations
+# Lets get Started
 
-##### Switch Config
-  - Create VLANS
-      - VLAN 10, IT
-      - VLAN 20 , FINANCE
-      - VLAN 30 , CUSTOMER_SERVICE
-  - Assign ports to Vlans
-  - Create a trunk port for the interface connecting siwtch and router
-  - Write Configuration
+## 1. Gather Information
+- **Locations**: Single branch office.
+- **Departments**: IT, Finance, and Customer Service.
+- **Number of Devices**: Estimate the number of devices per department for wireless access point planning.
+- **Existing Infrastructure**: Ensure compatibility with existing network hardware and software.
 
-##### Router Config
-   - Create Sub interfaces to int g0/0 with vlan for instance int g0/0.10
-   - Assign Ip address to each sub interface
-   - on sub interface implement encapsulation dot 1q with VLAN id
-   - Make sure interface are up
- 
-   - Configure DHCP pool for each department
-   - give department specifi default gateway
-   - DNS-server same as Default gateway
-   - Domain-name as "department_Name.com" in place ofdepartment name provide actual department name
-   - write configuration
-     
-##### Wireless Access Point
-   - on each access point Configure on port 1, with SSID and WPA2-PSK password 
+## 2. Design Network Topology
+- **Network Diagram**: Create a diagram illustrating how the router, switch, VLANs, and wireless access points are interconnected.
+  - **Router**: Connects to the switch and manages inter-VLAN routing.
+  - **Switch**: Connects all VLANs and devices.
+  - **Wireless Access Points**: Provide wireless connectivity for each department.
+- **Topology Layout**:
+  - **Router**: One router, connected to the switch.
+  - **Switch**: Connects to all departments and wireless access points.
+  - **Wireless Access Points**: Positioned to cover the entire area of each department.
 
-##### On End Devices
-   - On each pc, in ip config change static to dhcp for assign ip address automatically by DHCP
-   - similarly on printers
-   - on laptop
-       - power off and and WPC300N module
-       - Connect to wirless network based on department SSID and password
-##### Test Connection from End devices
-  - Ping from pc from one department other similarly from laptops
+## 3. Develop IP Addressing Scheme
+- **Base Network**: 192.168.1.0/24
+  - **IT VLAN**: 192.168.1.0/26 (supports up to 62 devices)
+  - **Finance VLAN**: 192.168.1.64/26 (supports up to 62 devices)
+  - **Customer Service VLAN**: 192.168.1.128/26 (supports up to 62 devices)
+- **Subnet Mask**: 255.255.255.192
+- **Gateway IPs**:
+  - **IT VLAN**: 192.168.1.1
+  - **Finance VLAN**: 192.168.1.65
+  - **Customer Service VLAN**: 192.168.1.129
+- **DHCP Pools**:
+  - **IT VLAN**: 192.168.1.2 - 192.168.1.62
+  - **Finance VLAN**: 192.168.1.66 - 192.168.1.126
+  - **Customer Service VLAN**: 192.168.1.130 - 192.168.1.190
+
+## 4. Hardware and Software Selection
+- **Router**: Should support VLANs and inter-VLAN routing.
+- **Switch**: Must support VLANs, trunking, and sufficient port capacity.
+- **Wireless Access Points**: Ensure they support VLAN tagging and provide adequate coverage.
+
+## 5. Configuration Plan
+1. **Switch Configuration**:
+   - Create VLANs for IT, Finance, and Customer Service.
+   - Assign switch ports to the appropriate VLANs.
+   - Configure trunking to the router for inter-VLAN traffic.
+2. **Router Configuration**:
+   - Set up sub-interfaces for each VLAN.
+   - Configure DHCP pools for each VLAN.
+   - Implement inter-VLAN routing to enable communication between VLANs.
+3. **Wireless Access Points Configuration**:
+   - Set up SSIDs and assign each SSID to the corresponding VLAN.
+   - Configure security settings for wireless networks.
+
+## 6. Implementation Plan
+- **Hardware Installation**: Install and connect the router, switch, and wireless access points.
+- **Configuration**:
+  - Apply switch and router configurations.
+  - Set up DHCP pools and VLANs.
+  - Configure wireless access points with appropriate SSIDs and VLAN settings.
+- **Testing**:
+  - Verify connectivity between VLANs.
+  - Test DHCP functionality for automatic IP assignment.
+  - Ensure wireless access points are functioning and providing coverage.
+
+## 7. Documentation
+- **Network Diagram**: Update with final configurations and device placements.
+- **Configuration Files**: Save and document router and switch configurations.
+- **IP Addressing Scheme**: Document IP ranges, subnet masks, and gateway IPs.
+- **Wireless Setup**: Record SSID, VLAN assignments, and security settings.
+
+
  
   
   
