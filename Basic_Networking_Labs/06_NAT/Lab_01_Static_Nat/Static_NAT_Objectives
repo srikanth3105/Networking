@@ -6,9 +6,9 @@ In this lab, you will configure Static NAT on a router to allow external devices
 
 ## Objectives
 
-- **Configure the network as follows:**
-- 1) Router details: Outside = 8.8.8.100/24 ,Inside = 10.1.1.254/24, Default Route to 8.8.8.8
-- 2) Configure static NAT so that the outside PC can access the internal HTTP, FTP and TFTP servers.
+- **Configure the network as follows**:
+1) Router details: Outside = 8.8.8.100/24 ,Inside = 10.1.1.254/24, Default Route to 8.8.8.8
+2) Configure static NAT so that the outside PC can access the internal HTTP, FTP and TFTP servers.
 - HTTP = 8.8.8.200 (NAT only the required port). DNS = myhttp.com
 - FTP = 8.8.8.201 (full static NAT). DNS = myftp.com
 3) Verify that both the inside and the outside PCs can access the internal servers.
