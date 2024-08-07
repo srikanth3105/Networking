@@ -1,0 +1,91 @@
+Router Config
+
+Router>en
+Router#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0/0   unassigned      YES unset  administratively down down 
+GigabitEthernet0/0/1   unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+Router#conf t
+** Configure Ip address **	
+Router(config)#hostname Router1
+Router1(config)#hostname Router1
+Router1(config)#int g0/0/1 
+Router1(config-if)#ip address 8.8.8.100 255.255.255.0
+Router1(config-if)#no shutdown
+Router1(config-if)#exit
+Router1(config)#int g0/0/0
+Router1(config-if)#ip address 10.1.1.254 255.255.255.0
+Router1(config-if)#no shut down 	
+Router1(config-if)#exit
+Router1(config)#exit
+Router1#
+%SYS-5-CONFIG_I: Configured from console by console
+sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0/0   10.1.1.254      YES manual up                    up 
+GigabitEthernet0/0/1   8.8.8.100       YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+Router1#
+** Configure Default Route **
+Router1#conf t
+Router1(config)#ip route 0.0.0.0 0.0.0.0 8.8.8.8
+Router1(config)#end
+Router1#
+Router1#sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is 8.8.8.8 to network 0.0.0.0
+
+     8.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C       8.8.8.0/24 is directly connected, GigabitEthernet0/0/1
+L       8.8.8.100/32 is directly connected, GigabitEthernet0/0/1
+     10.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C       10.1.1.0/24 is directly connected, GigabitEthernet0/0/0
+L       10.1.1.254/32 is directly connected, GigabitEthernet0/0/0
+S*   0.0.0.0/0 [1/0] via 8.8.8.8
+
+Router1#
+** Implementing Static NATS on interface **
+Router1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router1(config)#int g0/0/1
+Router1(config-if)#ip nat outside
+Router1(config-if)#int g0/0/0
+Router1(config-if)#ip nat inside
+Router1(config-if)#end
+Router1#
+%SYS-5-CONFIG_I: Configured from console by console
+** Configure nat for hhtp server and FTP server **
+Router1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+** Since http/https, come under tcp **
+Router1(config)#ip nat inside source static tcp 10.1.1.100 80 8.8.8.200 80
+Router1(config)#end
+Router1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+** Below NAT config can be done with using TCP as FTP come under TCp/ however for variation used Ip only ** 
+Router1(config)#ip nat inside source static 10.1.1.101 8.8.8.201
+Router1(config)#end
+Router1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router1#sh ip nat ?
+  statistics    Translation statistics
+  translations  Translation entries
+Router1#sh ip nat tra
+Router1#sh ip nat translations 
+Pro  Inside global     Inside local       Outside local      Outside global
+tcp 8.8.8.200:80       10.1.1.100:80      ---                ---
+---  8.8.8.201         10.1.1.101         ---                ---
+
+Router1#
